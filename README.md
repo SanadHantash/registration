@@ -1,3 +1,3 @@
 # registration
 
-## firebase: authentication and save data.
+## firebase: authentication and save data in realtime database.
