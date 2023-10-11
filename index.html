@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Registrion</title>
+</head>
+<body>
+    <div>
+        <form>
+            <label for="username">User Name</label> <input type="text" name="username" id="username"  pattern="[^' ']+" title="spaces not allowed" placeholder="enter name" required><br><br>
+            <label for="email">Email</label> <input type="email" name="email" id="email" placeholder="enter your email" required><br><br> 
+            <label for="password">Passwords</label><input type="password" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}" 
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" 
+            required><br><br>
+            <label for="phone">PhoneNumber</label>
+            <input type="tel" id="phone" name="phone" pattern="^07\d{8}$" title="Must start with 07 and contain 10 numbers" placeholder="07" required /><br><br>
+            <input type="submit" value="SignUp" id="signup"/>
+        </form>
+    </div>
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-analytics.js";
+    //import { getFirestore } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
+    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js";
+    //import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-collection.js";
+
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+    
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+        apiKey: "AIzaSyAhh4mlPNeBlwYnKpfWXvMIvx5BSZFhDao",
+        authDomain: "registrion-e25df.firebaseapp.com",
+        projectId: "registrion-e25df",
+        storageBucket: "registrion-e25df.appspot.com",
+        messagingSenderId: "561527224644",
+        appId: "1:561527224644:web:766baa1960fd54eeb67f11",
+        measurementId: "G-S8R6JSCTCQ"
+    };
+    
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+    //const db = getFirestore(app);
+
+
+
+    let signup = document.getElementById("signup")
+signup.addEventListener("click",(e)=>{
+let username = document.getElementById("username").value
+let email = document.getElementById("email").value
+let password = document.getElementById("password").value
+let phone = document.getElementById("phone").value
+
+createUserWithEmailAndPassword(auth, email, password)
+.then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    // ...
+    
+    })
+    .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+});
+});
+
+    </script>
+</html>
